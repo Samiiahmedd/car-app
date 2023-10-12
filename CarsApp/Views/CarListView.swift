@@ -8,8 +8,32 @@
 import SwiftUI
 
 struct CarListView: View {
+    //propirites
+    @State var isSettingViewPresented : Bool = false
+    //body
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List{
+                ForEach(carsData) { item in
+                    NavigationLink(destination: CarDetailsView (car: item)){
+                        CellView(car: item)
+                            .padding(.vertical,4)
+                    }//:NavigationLink
+                }
+                
+                
+            }//:List
+            .navigationTitle("Cars")
+            .navigationBarTitleDisplayMode(.large)
+            .navigationBarItems( trailing: Button(action: {
+                isSettingViewPresented = true
+            }, label: {
+                Image(systemName: "slider.horizontal.3")
+            }))
+            .sheet(isPresented: $isSettingViewPresented) {
+                settingView()
+            }
+        }//:NavigationView
     }
 }
 

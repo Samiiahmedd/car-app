@@ -9,18 +9,27 @@ import SwiftUI
 
 struct onBoardingView: View {
     var body: some View {
-        TabView{
-            ForEach(carsData) { item in
-                cardView(car: item)
-                    .cornerRadius(15)
-                    .padding(.horizontal, 10)
+        ZStack{
+            TabView{
+                ForEach(carsData) { item in
+                    cardView(car: item)
+                        .cornerRadius(15)
+                    //.padding(.horizontal, 10)
+                    
+                }
+                .ignoresSafeArea(.all)
+                
             }
+            
+            .tabViewStyle(PageTabViewStyle())
+            //.padding()
+            
         }
-        .tabViewStyle(PageTabViewStyle())
-        .padding()
+        .ignoresSafeArea()
         
-       
     }
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
